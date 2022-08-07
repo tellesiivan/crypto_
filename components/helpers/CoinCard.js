@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import tailwind from "twrnc";
 import ImageTemp from "./ImageTemp";
 import useConvertUSD from "../../hooks/useConvertUSD";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CoinCard({ coin }) {
   const { convertPrice, convertedPrice } = useConvertUSD();
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getPrice = async (amount) => {
@@ -17,6 +19,13 @@ export default function CoinCard({ coin }) {
   return (
     <TouchableOpacity
       style={tailwind`py-6 w-full bg-[#171f29] my-1 rounded-lg flex-row items-center px-3 justify-between`}
+      onPress={() => {
+        /* 1. Navigate to the Details route with params */
+        navigation.navigate("CoinDetail", {
+          coinId: coin.id,
+          otherParam: "anything you want here",
+        });
+      }}
     >
       <View style={tailwind`flex-row `}>
         <View style={tailwind`mr-4`}>

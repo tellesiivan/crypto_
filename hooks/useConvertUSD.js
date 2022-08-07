@@ -9,7 +9,9 @@ export default function useConvertUSD() {
       const res = await fetch(URL);
       const rq = await res.json();
       setConvertedPrice(rq);
-    } catch (error) {}
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return { convertedPrice, convertPrice };

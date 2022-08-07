@@ -1,12 +1,21 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import useTrending from "../hooks/useTrending";
 import CoinCard from "./helpers/CoinCard";
 import SectionalHeading from "./helpers/SectionalHeading";
 import ImageTemp from "./helpers/ImageTemp";
+import tailwind from "twrnc";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Trending() {
   const { data, loading, errMsg } = useTrending();
+  const navigation = useNavigation();
 
   return loading && !data ? (
     <View>
@@ -16,9 +25,15 @@ export default function Trending() {
     <FlatList
       ListHeaderComponent={
         <>
-          <SectionalHeading title="Welcome" fs="xl" mt="4" mb="4" />
+          <View style={tailwind`flex-row justify-between my-4 items-center`}>
+            <SectionalHeading title="Welcome" fs="xl" />
+            <TouchableOpacity onPress={() => navigation.navigate("Favorites")}>
+              <SectionalHeading title="Settings" fs="sm" />
+            </TouchableOpacity>
+          </View>
+
           <ImageTemp
-            src="https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2018/05/03/105181918-COINBASE.1910x1000.jpg"
+            src="https://images.squarespace-cdn.com/content/v1/53fe4a70e4b0a2293ab0e42a/1588603835845-UPDW9MNLCZ46ROP80301/Blog+Header.png?format=1000w"
             height={60}
             width="full"
           />
@@ -26,7 +41,7 @@ export default function Trending() {
         </>
       }
       nestedScrollEnabled
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.item.id}
       data={data}
       renderItem={({ item: { item } }) => <CoinCard coin={item} />}
     />

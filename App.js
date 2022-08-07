@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./navigation/screens/Home";
 import Favorites from "./navigation/screens/Favorites";
 import Search from "./navigation/screens/Search";
-import { Modal } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
