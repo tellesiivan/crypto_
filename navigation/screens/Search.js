@@ -18,7 +18,7 @@ import PrimarySearch from "./search/PrimarySearch";
 import Results from "./search/Results";
 
 const image = {
-  uri: "https://cdn.dribbble.com/users/101577/screenshots/14689218/media/bdfa4bc68715991a0054d37082767ba2.png?compress=1&resize=400x300&vertical=top",
+  uri: "https://cdn.dribbble.com/users/942818/screenshots/16438995/media/c21e16707c4016fdf054cc0816e4d661.jpg?compress=1&resize=840x630&vertical=top",
 };
 
 const SearchStack = createNativeStackNavigator();

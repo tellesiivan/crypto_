@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 import { selectSearch } from "../../../store/slices/marketSlice";
 import CoinCard from "../../../components/helpers/CoinCard";
 import tailwind from "twrnc";
+import SkeletonLoad from "../../../components/helpers/SkeletonLoad";
 
 export default function Results() {
   const search = useSelector(selectSearch);
-  const { data, loading, triggerSearch } = useSearch();
+  const { data, loading, triggerSearch, errMsg } = useSearch();
 
   useEffect(() => {
     if (search.query) {
@@ -20,11 +21,9 @@ export default function Results() {
   return (
     <Layout>
       <View>
-        {loading || !data ? (
-          <Text style={tailwind`text-gray-200 text-center mt-3`}>
-            Loading...
-          </Text>
-        ) : (
+        {loading ? (
+          <SkeletonLoad />
+        ) : data?.length > 0 ? (
           <FlatList
             style={tailwind`pt-4`}
             keyExtractor={(item) => item.id}
@@ -32,6 +31,10 @@ export default function Results() {
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => <CoinCard coin={item} />}
           />
+        ) : (
+          <Text style={tailwind`text-gray-200 text-center mt-3`}>
+            No data found!
+          </Text>
         )}
       </View>
     </Layout>

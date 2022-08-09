@@ -32,11 +32,11 @@ export default function SeachInput() {
 
   return (
     <View
-      style={tailwind`h-12 w-[90%] mx-3 bg-[#ffffff] rounded-full pl-4 flex-row items-center shadow-2xl`}
+      style={tailwind`h-12 w-[90%] mx-3 bg-[#ffffff] rounded-full  flex-row items-center shadow-2xl`}
     >
       <TextInput
         returnKeyType="search"
-        style={tailwind`h-full`}
+        style={tailwind`h-full w-[90%] pl-4`}
         onFocus={() => setIsFocused(true)}
         blurOnSubmit={true}
         value={inputValue}

@@ -4,13 +4,16 @@ import tailwind from "twrnc";
 import ImageTemp from "./ImageTemp";
 import useConvertUSD from "../../hooks/useConvertUSD";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { setSelectedCoinId } from "../../store/slices/marketSlice";
 
 export default function CoinCard({ coin }) {
+  const dispatch = useDispatch();
   const { convertPrice, convertedPrice } = useConvertUSD();
   const navigation = useNavigation();
 
   useEffect(() => {
-    const getPrice = async (amount) => {
+    const getPrice = async () => {
       await convertPrice(coin.id);
     };
     getPrice();
@@ -25,6 +28,8 @@ export default function CoinCard({ coin }) {
           coinId: coin.id,
           otherParam: "anything you want here",
         });
+        /* 2. Add id */
+        dispatch(setSelectedCoinId(coin.id));
       }}
     >
       <View style={tailwind`flex-row `}>
@@ -40,7 +45,8 @@ export default function CoinCard({ coin }) {
       </View>
       {convertedPrice && (
         <Text style={tailwind`text-white`}>
-          ${Object.values(convertedPrice)[0].usd}
+          {(convertedPrice || convertedPrice !== undefined) &&
+            `$${Object.values(convertedPrice)[0].usd}`}
         </Text>
       )}
     </TouchableOpacity>

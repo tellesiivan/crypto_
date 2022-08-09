@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -5,9 +6,21 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import tailwind from "twrnc";
+import { coinData } from "../../store/slices/marketActions";
+import { selectedCoin } from "../../store/slices/marketSlice";
 
 export default function CoinDetail({ route, navigation }) {
+  const dispatch = useDispatch();
+  const coinInfo = useSelector(selectedCoin);
+
+  useEffect(() => {
+    dispatch(coinData(route.params.coinId));
+    console.log(coinInfo);
+  }, [route.params.coinId]);
+  console.log(coinInfo);
+
   return (
     <SafeAreaView style={tailwind`bg-[#060c10] h-full items-center`}>
       <View style={tailwind`px-3 w-full`}>
