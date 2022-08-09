@@ -7,7 +7,7 @@ export default function Layout({ children, color }) {
     <SafeAreaView
       style={tailwind`${color ? `bg-[${color}]` : "bg-[#081118]"} h-full`}
     >
-      <View style={tailwind`px-3 `}>{children}</View>
+      <View style={tailwind`px-2 `}>{children}</View>
     </SafeAreaView>
   );
 }

@@ -7,7 +7,6 @@ import {
 } from "./marketSlice";
 
 export const coinData = (coinID) => {
-  console.log(coinID);
   return (dispatch) => {
     async function getDetails() {
       dispatch(selectedCoinLoading(true));
@@ -15,10 +14,12 @@ export const coinData = (coinID) => {
         const response = await fetch(
           `https://api.coingecko.com/api/v3/coins/${coinID}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=true`
         );
-        console.log(response);
+
         if (!response.ok) throw new Error("Unable to get trending coins.");
-        const data = await rq.json();
+        const data = await response.json();
+
         dispatch(addSelectedCoinData(data));
+        dispatch(selectedCoinLoading(false));
       } catch (error) {
         dispatch(selectedCoinLoading(false));
         dispatch(
@@ -32,7 +33,6 @@ export const coinData = (coinID) => {
           })
         );
       }
-      dispatch(selectedCoinLoading(false));
     }
     getDetails();
   };

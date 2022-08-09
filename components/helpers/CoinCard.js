@@ -23,13 +23,13 @@ export default function CoinCard({ coin }) {
     <TouchableOpacity
       style={tailwind`py-6 w-full bg-[#171f29] my-1 rounded-lg flex-row items-center px-3 justify-between`}
       onPress={() => {
+        dispatch(setSelectedCoinId(coin.id));
         /* 1. Navigate to the Details route with params */
         navigation.navigate("CoinDetail", {
           coinId: coin.id,
           otherParam: "anything you want here",
         });
         /* 2. Add id */
-        dispatch(setSelectedCoinId(coin.id));
       }}
     >
       <View style={tailwind`flex-row `}>
@@ -37,7 +37,7 @@ export default function CoinCard({ coin }) {
           <ImageTemp src={coin.thumb} height={8} width={8} />
         </View>
         <View>
-          <Text style={tailwind`text-white mb-1 text-md font-semibold`}>
+          <Text style={tailwind`text-white mb-1 font-semibold`}>
             {coin.name}
           </Text>
           <Text style={tailwind`text-gray-300`}>{coin.symbol}</Text>

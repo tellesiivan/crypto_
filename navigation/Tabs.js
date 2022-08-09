@@ -23,6 +23,8 @@ export default function Tabs() {
           height: 100,
           backgroundColor: "#171f29",
           borderColor: "#171f29",
+          borderTopWidth: 0,
+          elevation: 0,
         },
       }}
     >
