@@ -34,27 +34,29 @@ export default function CoinDetail({ route, navigation }) {
 
   return (
     <SafeAreaView style={tailwind`bg-[#060c10] h-full items-center `}>
-      {Object.keys(coinInfo.data).length !== 0 && !coinInfo.status.loading && (
-        <TouchableOpacity
-          style={tailwind`absolute right-2 bottom-3 h-12 w-12 bg-[#ff75c6] z-50 rounded-full items-center justify-center`}
-          onPress={() =>
-            dispatch(
-              toggleFavorite({
-                id: coinInfo.id,
-                thumb: coinInfo.data.image.thumb,
-                name: coinInfo.data.name,
-                symbol: coinInfo.data.symbol,
-              })
-            )
-          }
-        >
-          <Ionicons
-            name="bookmark"
-            size={20}
-            style={tailwind`text-${isFavorited ? "[#000000]" : "[#ffffff]"}`}
-          />
-        </TouchableOpacity>
-      )}
+      {Object.keys(coinInfo.data).length !== 0 &&
+        !coinInfo.status.loading &&
+        coinInfo.data.id === coinInfo.id && (
+          <TouchableOpacity
+            style={tailwind`absolute right-2 bottom-3 h-12 w-12 bg-[#f91880] z-50 rounded-full items-center justify-center`}
+            onPress={() =>
+              dispatch(
+                toggleFavorite({
+                  id: coinInfo.id,
+                  thumb: coinInfo.data.image.thumb,
+                  name: coinInfo.data.name,
+                  symbol: coinInfo.data.symbol,
+                })
+              )
+            }
+          >
+            <Ionicons
+              name="bookmark"
+              size={20}
+              style={tailwind`text-${isFavorited ? "[#000000]" : "[#ffffff]"}`}
+            />
+          </TouchableOpacity>
+        )}
 
       <ScrollView style={tailwind`px-2 w-full`} alwaysBounceVertical={false}>
         {coinInfo.status.loading ? (

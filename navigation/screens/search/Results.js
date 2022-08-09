@@ -33,7 +33,7 @@ export default function Results() {
           />
         ) : (
           <Text style={tailwind`text-gray-200 text-center mt-3`}>
-            No data found!
+            Start searching...
           </Text>
         )}
       </View>

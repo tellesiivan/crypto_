@@ -12,7 +12,7 @@ export const coinData = (coinID) => {
       dispatch(selectedCoinLoading(true));
       try {
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/${coinID}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=true`
+          `https://api.coingecko.com/api/v3/coins/${coinID}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=true&sparkline=true`
         );
 
         if (!response.ok) throw new Error("Unable to get trending coins.");

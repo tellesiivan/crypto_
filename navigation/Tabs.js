@@ -28,7 +28,7 @@ export default function Tabs() {
           elevation: 0,
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#ff75c6",
+        tabBarActiveTintColor: "#f91880",
       }}
     >
       <Tab.Screen

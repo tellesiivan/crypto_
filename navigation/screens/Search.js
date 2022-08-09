@@ -58,13 +58,13 @@ export default function Search({ navigation }) {
       <View style={tailwind`flex-2 `}>
         <SearchStack.Navigator>
           <SearchStack.Screen
-            name="PrimarySearch"
-            component={PrimarySearch}
+            name="Results"
+            component={Results}
             options={{ headerShown: false }}
           />
           <SearchStack.Screen
-            name="Results"
-            component={Results}
+            name="PrimarySearch"
+            component={PrimarySearch}
             options={{ headerShown: false }}
           />
         </SearchStack.Navigator>

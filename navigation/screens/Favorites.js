@@ -1,10 +1,17 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import Layout from "../../components/Layout";
 import tailwind from "twrnc";
 import SectionalHeading from "../../components/helpers/SectionalHeading";
 import { useSelector } from "react-redux";
 import { favorites } from "../../store/slices/favoritesSlice";
+import CoinCard from "../../components/helpers/CoinCard";
 
 const opts = [
   { navigateTo: "Home", title: "Trending" },
@@ -14,15 +21,26 @@ const opts = [
 export default function Favorites({ navigation }) {
   const currentFavs = useSelector(favorites);
 
+  console.log(currentFavs);
+
   return (
     <Layout>
       {currentFavs.length > 0 ? (
-        <View style={tailwind`items-center justify-center h-full`}>
+        <>
           <SectionalHeading
             title={`You have ${currentFavs.length} favorites.`}
             fs="lg"
+            mt={3}
+            mb={2}
           />
-        </View>
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={currentFavs}
+            showsVerticalScrollIndicator={false}
+            alwaysBounceVertical={false}
+            renderItem={({ item }) => <CoinCard coin={item} />}
+          />
+        </>
       ) : (
         <View style={tailwind`items-center justify-center h-full`}>
           <SectionalHeading title="You have no favorites." fs="lg" />
