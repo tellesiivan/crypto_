@@ -32,11 +32,6 @@ export default function Trending() {
         <>
           <View style={tailwind`flex-row justify-between my-4 items-center`}>
             <SectionalHeading title="Welcome" fs="xl" />
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Preferences")}
-            >
-              <SectionalHeading title="Preferences" fs="sm" />
-            </TouchableOpacity>
           </View>
 
           <ImageTemp

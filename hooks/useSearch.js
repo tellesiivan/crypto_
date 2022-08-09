@@ -20,7 +20,6 @@ export default function useSearch() {
     setLoading(true);
     try {
       const response = await fetch(URL);
-      console.log(response, "response - useSearch");
       if (!response.ok) throw new Error("Unable to get trending coins.");
       const req = await response.json();
 

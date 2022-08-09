@@ -10,14 +10,15 @@ export default function Tabs() {
 
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "#ff75c6",
-        inactiveTintColor: "gray",
-        showLabel: false,
-        labelStyle: {
-          fontSize: 12,
-        },
-      }}
+      initialRouteName="Home"
+      // tabBarOptions={{
+      //   activeTintColor: "#ff75c6",
+      //   inactiveTintColor: "gray",
+      //   showLabel: false,
+      //   labelStyle: {
+      //     fontSize: 12,
+      //   },
+      // }}
       screenOptions={{
         tabBarStyle: {
           height: 100,
@@ -26,6 +27,8 @@ export default function Tabs() {
           borderTopWidth: 0,
           elevation: 0,
         },
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "#ff75c6",
       }}
     >
       <Tab.Screen
@@ -42,9 +45,10 @@ export default function Tabs() {
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color, size, focused }) => {
             return <Ionicons name="search" color={color} size={size} />;
           },
+
           headerShown: false,
         }}
       />
@@ -58,7 +62,7 @@ export default function Tabs() {
           headerShown: false,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Preferences"
         component={Preferences}
         options={{
@@ -67,7 +71,7 @@ export default function Tabs() {
           },
           headerShown: false,
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

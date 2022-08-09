@@ -1,35 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  origin: null,
-  destination: null,
-  travelTimeInfo: null,
+  favoriteCoins: [],
 };
 
 export const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    setOrigin: (state, action) => {
-      state.origin = action.payload;
+    addFavorite: (state, action) => {
+      state.favoriteCoins = [action.payload, ...state.favoriteCoins];
     },
-    setDestination: (state, action) => {
-      state.destination = action.payload;
+    removeFavorite: (state, action) => {
+      state.favoriteCoins = state.favoriteCoins.filter(
+        (coin) => coin.id !== action.payload.id
+      );
     },
-    setTravelTimeInfo: (state, action) => {
-      state.travelTimeInfo = action.payload;
+    toggleFavorite: (state, action) => {
+      const isFav = !!state.favoriteCoins.find(
+        (fav) => fav.id === action.payload.id
+      );
+
+      if (isFav) {
+        state.favoriteCoins = state.favoriteCoins.filter(
+          (coin) => coin.id !== action.payload.id
+        );
+      } else {
+        state.favoriteCoins = [action.payload, ...state.favoriteCoins];
+      }
     },
   },
 });
 
-export const { setTravelTimeInfo, setDestination, setOrigin } =
+export const { addFavorite, removeFavorite, toggleFavorite } =
   favoritesSlice.actions;
 
 // selectors
-const selectOrigin = (state) => state.nav.origin;
-const selectDestination = (state) => state.nav.destination;
-const selectTravelTimeInfo = (state) => state.nav.travelTimeInfo;
+const favorites = (state) => state.favorites.favoriteCoins;
 
-export { selectOrigin, selectDestination, selectTravelTimeInfo };
+export { favorites };
 
 export default favoritesSlice.reducer;

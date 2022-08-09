@@ -12,6 +12,7 @@ export default function ConvertStringToHTML(str) {
       baseStyle={{ color: "#e5e7eb" }}
       contentWidth={width}
       source={source}
+      enableExperimentalBRCollapsing={false}
     />
   );
 }

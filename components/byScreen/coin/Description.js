@@ -8,22 +8,22 @@ import SectionalHeading from "../../helpers/SectionalHeading";
 
 export default function Description() {
   const coinInfo = useSelector(selectedCoin);
-
   const coin = coinInfo.data;
-  console.log(coin);
 
   return (
     <View>
-      {coin.description?.en && (
-        <>
+      {/* {coin.description?.en && (
+        <View>
           <SectionalHeading title="Description" fs="lg" mb={2} />
           <Text style={tailwind`text-gray-200`}>
-            {ConvertStringToHTML(coin.description.en)}
+            <Text>
+              {ConvertStringToHTML(coin.description.en) || coin.description.en}
+            </Text>
           </Text>
-        </>
-      )}
+        </View>
+      )} */}
       {coin.categories?.length > 0 && (
-        <>
+        <View>
           <View style={tailwind`mt-5 mb-4 border-t border-gray-600 `}>
             <View style={tailwind`flex-row flex-wrap mt-3`}>
               {coin.categories.map((cat) => (
@@ -38,7 +38,7 @@ export default function Description() {
               ))}
             </View>
           </View>
-        </>
+        </View>
       )}
     </View>
   );

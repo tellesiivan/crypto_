@@ -6,6 +6,7 @@ import useConvertUSD from "../../hooks/useConvertUSD";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setSelectedCoinId } from "../../store/slices/marketSlice";
+import { coinData } from "../../store/slices/marketActions";
 
 export default function CoinCard({ coin }) {
   const dispatch = useDispatch();
@@ -43,10 +44,9 @@ export default function CoinCard({ coin }) {
           <Text style={tailwind`text-gray-300`}>{coin.symbol}</Text>
         </View>
       </View>
-      {convertedPrice && (
+      {convertedPrice && Object.values(convertedPrice)[0].usd !== undefined && (
         <Text style={tailwind`text-white`}>
-          {(convertedPrice || convertedPrice !== undefined) &&
-            `$${Object.values(convertedPrice)[0].usd}`}
+          {`$${Object.values(convertedPrice)[0].usd}`}
         </Text>
       )}
     </TouchableOpacity>
